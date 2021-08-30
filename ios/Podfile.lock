@@ -1,0 +1,28 @@
+PODS:
+  - cbl_flutter (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - path_provider (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - cbl_flutter (from `.symlinks/plugins/cbl_flutter/ios`)
+  - Flutter (from `Flutter`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+
+EXTERNAL SOURCES:
+  cbl_flutter:
+    :path: ".symlinks/plugins/cbl_flutter/ios"
+  Flutter:
+    :path: Flutter
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+
+SPEC CHECKSUMS:
+  cbl_flutter: a50f8ba31550a8623085ed09bacd20ce03c978a0
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+
+PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+
+COCOAPODS: 1.10.1

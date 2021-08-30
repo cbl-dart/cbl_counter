@@ -1,0 +1,21 @@
+{
+  "logging": {
+    "console": {
+      "enabled": true,
+      "log_level": "info",
+      "log_keys": ["*"],
+      "color_enabled": true
+    }
+  },
+  "databases": {
+    "counters": {
+      "bucket": "walrus:",
+      "users": {
+        "GUEST": {
+          "disabled": false,
+          "admin_channels": ["*"]
+        }
+      }
+    }
+  }
+}
