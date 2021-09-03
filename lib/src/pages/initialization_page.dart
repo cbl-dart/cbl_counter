@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../core/errors.dart';
 
+/// Loading page, which is displayed while the app is initializing.
 class InitializationPage extends StatefulWidget {
   const InitializationPage({
     Key? key,
@@ -9,7 +11,8 @@ class InitializationPage extends StatefulWidget {
     required this.builder,
   }) : super(key: key);
 
-  final Future<void> Function() initialize;
+  /// Callback which kicks of the initialization of the app.
+  final AsyncCallback initialize;
 
   final WidgetBuilder builder;
 

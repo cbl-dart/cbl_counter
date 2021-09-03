@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+/// Decorates its [child] with a small circular overlay.
 class DotDecoration extends StatelessWidget {
   const DotDecoration({
     Key? key,

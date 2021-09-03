@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A [Switch] with a label to its left.
 class LabledSwitch extends StatelessWidget {
   const LabledSwitch({
     Key? key,

@@ -2,6 +2,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../utils/file_system.dart';
 
+/// Configuration of the app for the environment it is running in.
 class AppEnvironment {
   AppEnvironment({
     required this.cblDatabaseDirectory,
@@ -10,6 +11,7 @@ class AppEnvironment {
     required this.syncGatewayUrl,
   });
 
+  /// Initialize the [appEnvironment].
   static Future<void> init() async {
     final filesDirectory = await getApplicationSupportDirectory();
     final cblDatabaseDirectory = filesDirectory.subDirectory('CouchbaseLite');

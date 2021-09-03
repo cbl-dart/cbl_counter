@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'context.dart';
 
+/// Reports an unexpected error to the user and the Flutter framework.
 void reportUnexpectedError(
   Object error,
   StackTrace stackTrace,
@@ -10,6 +11,7 @@ void reportUnexpectedError(
   recordUnexpectedError(error, stackTrace);
 }
 
+/// Shows a dialog to the user, to notify them of an unexpected error.
 void _showUnexpectedErrorDialog(Object error) {
   showDialog(
     context: appContext,
@@ -33,6 +35,7 @@ void _showUnexpectedErrorDialog(Object error) {
   );
 }
 
+/// Reports and unexpected error to the Flutter framework.
 void recordUnexpectedError(Object error, StackTrace stackTrace) {
   FlutterError.reportError(FlutterErrorDetails(
     exception: error,

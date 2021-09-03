@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'configuration.dart';
+import 'initialization.dart';
 import 'core/context.dart';
 import 'pages/counter_page.dart';
 import 'pages/initialization_page.dart';
 
 class CounterApp extends StatelessWidget {
-  const CounterApp({Key? key, required this.config}) : super(key: key);
+  const CounterApp({Key? key, required this.initializer}) : super(key: key);
 
-  final AppConfiguration config;
+  final AppInitializer initializer;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class CounterApp extends StatelessWidget {
       darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
       navigatorKey: navigatorKey,
       builder: (context, child) => InitializationPage(
-        initialize: config.ensureInitialized,
+        initialize: initializer.ensureInitialized,
         builder: (context) => ProvideRootDependencies(
-          dependencies: config.rootDependencies,
+          dependencies: initializer.rootDependencies,
           child: child!,
         ),
       ),

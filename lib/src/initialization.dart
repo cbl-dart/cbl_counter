@@ -9,22 +9,31 @@ import 'package:provider/provider.dart';
 import 'core/environment.dart';
 import 'data/counter_repository.dart';
 
-abstract class AppConfiguration {
+/// Initializer, which prepares the app for execution.
+///
+/// Tests can use an alternative implementation, instead of the
+/// [DefaultAppInitializer].
+abstract class AppInitializer {
   static Future<void>? _initialized;
 
+  /// Ensures that the app is initialized. Can be called multiple times.
   Future<void> ensureInitialized() => _initialized ??= initialize();
 
+  /// Performs the actual initialization.
   Future<void> initialize();
 
+  /// Returns the root dependencies of the app.
   RootDependencies get rootDependencies;
 }
 
+/// The dependencies which are provided at the root of the app.
 class RootDependencies {
   RootDependencies({required this.counterRepository});
 
   final CounterRepository counterRepository;
 }
 
+/// Provides the [RootDependencies] to the widget tree below.
 class ProvideRootDependencies extends StatelessWidget {
   const ProvideRootDependencies({
     Key? key,
@@ -44,7 +53,9 @@ class ProvideRootDependencies extends StatelessWidget {
       );
 }
 
-class DefaultAppConfiguration extends AppConfiguration {
+/// The default [AppInitializer], which fully initializes the app for production
+/// or live development.
+class DefaultAppInitializer extends AppInitializer {
   late final AsyncDatabase _database;
 
   @override
@@ -62,7 +73,7 @@ class DefaultAppConfiguration extends AppConfiguration {
     Database.log
       // For Flutter apps `Database.log.custom` is setup with a logger, which
       // logs to `print`, but only at log level `warning`.
-      ..custom = DartConsoleLogger(kReleaseMode ? LogLevel.none : LogLevel.info)
+      ..custom!.level = kReleaseMode ? LogLevel.none : LogLevel.info
       ..file.config = LogFileConfiguration(
         directory: appEnvironment.cblLogsDirectory,
         usePlainText: !kReleaseMode,

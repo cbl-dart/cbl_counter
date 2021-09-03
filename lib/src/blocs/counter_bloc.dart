@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../data/counter_repository.dart';
 import 'bloc_helper.dart';
 
+/// Bloc which manages the interactions with a single counter.
 class CounterBloc extends ChangeNotifier with BlocHelper {
   CounterBloc({
     required this.id,

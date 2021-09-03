@@ -9,6 +9,7 @@ import '../blocs/counter_bloc.dart';
 import '../components/dot_decoration.dart';
 import '../components/labled_switch.dart';
 
+/// Displays a counter and various controls for it.
 class CounterPage extends StatefulWidget {
   const CounterPage({Key? key}) : super(key: key);
 
@@ -48,16 +49,9 @@ class _CounterPageState extends State<CounterPage> {
         title: const Text('Counter'),
         actions: [
           IconButton(
-            onPressed: () {
-              if (bloc.fetchStatus == ActionStatus.active) {
-                // Ignore clicks while an update is pending.
-                return;
-              }
-
-              bloc.fetch();
-            },
             icon: const Icon(Icons.download),
             tooltip: 'Load from DB',
+            onPressed: _invokeAction(bloc.fetchStatus, bloc.fetch),
           ),
           LabledSwitch(
             label: const Text('Watch'),
@@ -82,42 +76,39 @@ class _CounterPageState extends State<CounterPage> {
             },
           ),
           IconButton(
-            onPressed: () {
-              if (bloc.updateStatus == ActionStatus.active) {
-                // Ignore clicks while an update is pending.
-                return;
-              }
-
-              bloc.reset();
-            },
             icon: const Icon(Icons.restart_alt),
             tooltip: 'Reset',
+            onPressed: _invokeAction(bloc.updateStatus, bloc.reset),
           ),
         ],
       ),
-      body: Center(child: _buildCounter()),
+      body: const Center(child: _CounterGauge()),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          if (bloc.updateStatus == ActionStatus.active) {
-            // Ignore clicks while an update is pending.
-            return;
-          }
-
-          bloc.increment();
-        },
-        tooltip: 'Increment',
         child: const Icon(Icons.add),
+        tooltip: 'Increment',
+        onPressed: _invokeAction(bloc.updateStatus, bloc.increment),
       ),
     );
   }
+}
 
-  Widget _buildCounter() {
+/// Displays the actual value of a counter.
+class _CounterGauge extends StatelessWidget {
+  const _CounterGauge({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     final bloc = context.watch<CounterBloc>();
 
-    Widget child;
+    Widget content;
     if (bloc.isLoaded) {
-      child = Text(
+      // The counter's value is loaded, so show it.
+      content = Text(
         '${bloc.count}',
+        // This key causes the `AnimatedSwitcher` below to animate the
+        // transition from on counter value to the next.
         key: ValueKey(bloc.count),
         style: Theme.of(context)
             .textTheme
@@ -129,29 +120,41 @@ class _CounterPageState extends State<CounterPage> {
           bloc.watchStatus == ProcessStatus.running ||
           (bloc.fetchStatus == ActionStatus.none &&
               bloc.watchStatus == ProcessStatus.stopped)) {
-        child = SizedBox.fromSize(
+        // The counter bloc has not loaded a value yet, but also has no error.
+        content = SizedBox.fromSize(
           size: const Size.square(140),
           child: const CircularProgressIndicator(),
         );
       } else {
-        child = const Icon(Icons.error);
+        // The counter bloc could not load a value.
+        content = const Icon(Icons.error);
       }
     }
 
-    child = Container(
-      padding: const EdgeInsets.all(8.0),
-      height: 180,
-      alignment: Alignment.center,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
-        child: child,
-      ),
-    );
-
+    // Indicates that the counter has a pending update and the current value
+    // has not been persisted yet.
     return DotDecoration(
       show: bloc.updateStatus == ActionStatus.active,
       alignment: Alignment.bottomCenter,
-      child: child,
+      // Lays out the content.
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        height: 180,
+        // Animates changes to the content.
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: content,
+        ),
+      ),
     );
   }
 }
+
+VoidCallback _invokeAction(ActionStatus status, VoidCallback action) => () {
+      if (status == ActionStatus.active) {
+        // Ignore clicks while the action is active.
+        return;
+      }
+
+      action();
+    };
