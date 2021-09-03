@@ -9,8 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  cbl: ^1.0.0-beta.3
-  cbl_flutter: ^1.0.0-beta.3
+  cbl: ^1.0.0-beta.4
+  cbl_flutter: ^1.0.0-beta.4
   collection: ^1.15.0
   provider: ^6.0.0
   path_provider: ^2.0.2
