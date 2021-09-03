@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cbl/cbl.dart';
 import 'package:cbl_flutter/cbl_flutter.dart';
 import 'package:flutter/foundation.dart';
@@ -8,6 +10,10 @@ import 'core/environment.dart';
 import 'data/counter_repository.dart';
 
 abstract class AppConfiguration {
+  static Future<void>? _initialized;
+
+  Future<void> ensureInitialized() => _initialized ??= initialize();
+
   Future<void> initialize();
 
   RootDependencies get rootDependencies;
@@ -64,9 +70,16 @@ class DefaultAppConfiguration extends AppConfiguration {
   }
 
   Future<void> _openDatabase() async {
-    // Comment out to reset the local database.
-    // await Database.remove('counters');
-    _database = await Database.openAsync('counters');
+    _database = await Database.openAsync(
+      // A new database is opened each time the app starts to ensure multiple
+      // instances of the app, running in parallel, do not use the same
+      // database. This is necessary because two or more replicators accessing
+      // the same database can cause issues with locking of the database.
+      'counters-${Random().nextInt(0xFFFFFF)}',
+      DatabaseConfiguration(
+        directory: appEnvironment.cblDatabaseDirectory,
+      ),
+    );
   }
 
   @override

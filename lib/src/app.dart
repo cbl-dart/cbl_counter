@@ -18,7 +18,7 @@ class CounterApp extends StatelessWidget {
       darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
       navigatorKey: navigatorKey,
       builder: (context, child) => InitializationPage(
-        initialize: config.initialize,
+        initialize: config.ensureInitialized,
         builder: (context) => ProvideRootDependencies(
           dependencies: config.rootDependencies,
           child: child!,

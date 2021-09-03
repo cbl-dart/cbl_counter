@@ -51,7 +51,9 @@ class CounterRepository {
 
         return Rx.merge([
           errorsStream,
-          replicator.start().asStream(),
+          // By starting the replicator in a microtask we ensure the error
+          // stream is subscribed to before that.
+          Future.microtask(replicator.start).asStream(),
         ]).doOnCancel(replicator.close);
       });
 
