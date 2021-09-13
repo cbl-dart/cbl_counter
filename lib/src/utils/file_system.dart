@@ -7,4 +7,4 @@ extension DirectoryUtils on Directory {
 }
 
 Future<void> createAllDirectories(List<Directory> directories) =>
-    Future.wait(directories.map((it) => it.create()));
+    Future.wait(directories.map((it) => it.create(recursive: true)));
