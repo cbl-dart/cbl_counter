@@ -21,28 +21,28 @@ packages:
       name: cbl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.4"
+    version: "1.0.0-beta.5"
   cbl_ffi:
     dependency: transitive
     description:
       name: cbl_ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0-beta.3"
+    version: "0.7.0-beta.4"
   cbl_flutter:
     dependency: "direct main"
     description:
       name: cbl_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.4"
+    version: "1.0.0-beta.5"
   cbl_native:
     dependency: transitive
     description:
       name: cbl_native
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0-beta.3"
+    version: "5.0.0-beta.4"
   characters:
     dependency: transitive
     description:

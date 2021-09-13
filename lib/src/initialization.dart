@@ -87,9 +87,6 @@ class DefaultAppInitializer extends AppInitializer {
       // database. This is necessary because two or more replicators accessing
       // the same database can cause issues with locking of the database.
       'counters-${Random().nextInt(0xFFFFFF)}',
-      DatabaseConfiguration(
-        directory: appEnvironment.cblDatabaseDirectory,
-      ),
     );
   }
 
