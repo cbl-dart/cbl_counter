@@ -8,6 +8,7 @@ import '../blocs/bloc_helper.dart';
 import '../blocs/counter_bloc.dart';
 import '../components/dot_decoration.dart';
 import '../components/labled_switch.dart';
+import '../components/number_counter.dart';
 
 /// Displays a counter and various controls for it.
 class CounterPage extends StatefulWidget {
@@ -105,11 +106,8 @@ class _CounterGauge extends StatelessWidget {
     Widget content;
     if (bloc.isLoaded) {
       // The counter's value is loaded, so show it.
-      content = Text(
-        '${bloc.count}',
-        // This key causes the `AnimatedSwitcher` below to animate the
-        // transition from on counter value to the next.
-        key: ValueKey(bloc.count),
+      content = NumberCounter(
+        number: bloc.count!,
         style: Theme.of(context)
             .textTheme
             .headline1!
