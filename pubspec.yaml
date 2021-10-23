@@ -3,15 +3,16 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: '^2.5.0'
+  sdk: '>=2.14.0 <3.0.0'
+  flutter: '>=2.5.0'
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  cbl: ^1.0.0-beta.5
-  cbl_flutter: ^1.0.0-beta.5
+  cbl: ^1.0.0-beta.6
+  cbl_flutter: ^1.0.0-beta.6
+  cbl_flutter_ce: ^1.0.0-beta.0
   collection: ^1.15.0
   provider: ^6.0.0
   path_provider: ^2.0.2
