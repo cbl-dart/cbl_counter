@@ -16,18 +16,21 @@ class CounterRepository {
   /// database.
   Future<int> counterValue(String id) async {
     final query = _buildCounterValueQuery();
-    query.parameters = Parameters({'COUNTER_ID': id});
+    await query.setParameters(Parameters({'COUNTER_ID': id}));
     final resultSet = await query.execute();
     return _countValueQueryResult(resultSet);
   }
 
   /// Returns a stream of the value of the counter with the given [id], which
   /// emits a new value when the counter changes.
-  Stream<int> watchCounterValue(String id) {
-    final query = _buildCounterValueQuery();
-    query.parameters = Parameters({'COUNTER_ID': id});
-    return query.changes().asyncMap(_countValueQueryResult);
-  }
+  Stream<int> watchCounterValue(String id) => Future(() async {
+        final query = _buildCounterValueQuery();
+        await query.setParameters(Parameters({'COUNTER_ID': id}));
+        return query;
+      })
+          .asStream()
+          .asyncExpand((query) => query.changes())
+          .asyncMap((change) => _countValueQueryResult(change.results));
 
   /// Updates the value of the counter with the given [id], by adding a [delta]
   /// value to it.
