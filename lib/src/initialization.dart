@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:cbl/cbl.dart';
 import 'package:cbl_flutter/cbl_flutter.dart';
-import 'package:cbl_flutter_ce/cbl_flutter_ce.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -62,10 +60,6 @@ class DefaultAppInitializer extends AppInitializer {
 
   @override
   Future<void> initialize() async {
-    if (Platform.isIOS || Platform.isAndroid) {
-      CblFlutterCe.registerWith();
-    }
-
     await Future.wait([
       AppEnvironment.init(),
       CouchbaseLiteFlutter.init(),
