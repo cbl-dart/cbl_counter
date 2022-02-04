@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../blocs/bloc_helper.dart';
 import '../blocs/counter_bloc.dart';
 import '../components/dot_decoration.dart';
-import '../components/labled_switch.dart';
+import '../components/labeled_switch.dart';
 import '../components/number_counter.dart';
 
 /// Displays a counter and various controls for it.
@@ -54,7 +54,7 @@ class _CounterPageState extends State<CounterPage> {
             tooltip: 'Load from DB',
             onPressed: _invokeAction(bloc.fetchStatus, bloc.fetch),
           ),
-          LabledSwitch(
+          LabeledSwitch(
             label: const Text('Watch'),
             value: bloc.watchStatus == ProcessStatus.running,
             onChanged: (value) {
@@ -65,7 +65,7 @@ class _CounterPageState extends State<CounterPage> {
               }
             },
           ),
-          LabledSwitch(
+          LabeledSwitch(
             label: const Text('Sync'),
             value: bloc.syncStatus == ProcessStatus.running,
             onChanged: (value) {

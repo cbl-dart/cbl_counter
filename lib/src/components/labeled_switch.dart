@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// A [Switch] with a label to its left.
-class LabledSwitch extends StatelessWidget {
-  const LabledSwitch({
+class LabeledSwitch extends StatelessWidget {
+  const LabeledSwitch({
     Key? key,
     required this.label,
     required this.value,
