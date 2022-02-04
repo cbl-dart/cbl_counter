@@ -60,6 +60,8 @@ class DefaultAppInitializer extends AppInitializer {
 
   @override
   Future<void> initialize() async {
+    await TracingDelegate.install(DevToolsTracing());
+
     await Future.wait([
       AppEnvironment.init(),
       CouchbaseLiteFlutter.init(),

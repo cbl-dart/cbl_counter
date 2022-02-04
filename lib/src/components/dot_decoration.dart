@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// Decorates its [child] with a small circular overlay.
 class DotDecoration extends StatelessWidget {
@@ -39,8 +38,8 @@ class DotDecoration extends StatelessWidget {
                   height: size,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color:
-                        color ?? Theme.of(context).colorScheme.secondaryVariant,
+                    color: color ??
+                        Theme.of(context).colorScheme.secondaryContainer,
                   ),
                 ),
               ),

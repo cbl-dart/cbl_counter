@@ -21,14 +21,14 @@ packages:
       name: cbl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.13"
+    version: "1.0.0-beta.14"
   cbl_dart:
     dependency: "direct dev"
     description:
       name: cbl_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.4"
+    version: "1.0.0-beta.5"
   cbl_ffi:
     dependency: transitive
     description:
@@ -42,7 +42,7 @@ packages:
       name: cbl_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.11"
+    version: "1.0.0-beta.12"
   cbl_flutter_ce:
     dependency: "direct main"
     description:
@@ -186,6 +186,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.11"
+  material_color_utilities:
+    dependency: transitive
+    description:
+      name: material_color_utilities
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
   meta:
     dependency: transitive
     description:
@@ -344,7 +351,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.4.8"
   typed_data:
     dependency: transitive
     description:
@@ -381,5 +388,5 @@ packages:
     source: hosted
     version: "0.2.0"
 sdks:
-  dart: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  dart: ">=2.16.0 <3.0.0"
+  flutter: ">=2.10.0"
