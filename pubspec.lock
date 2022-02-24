@@ -21,56 +21,56 @@ packages:
       name: cbl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.14"
+    version: "1.0.0"
   cbl_dart:
     dependency: "direct dev"
     description:
       name: cbl_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.5"
+    version: "1.0.0"
   cbl_ffi:
     dependency: transitive
     description:
       name: cbl_ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0-beta.11"
+    version: "0.7.0"
   cbl_flutter:
     dependency: "direct main"
     description:
       name: cbl_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.12"
+    version: "1.0.0"
   cbl_flutter_ce:
     dependency: "direct main"
     description:
       name: cbl_flutter_ce
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.5"
+    version: "1.0.0"
   cbl_flutter_platform_interface:
     dependency: transitive
     description:
       name: cbl_flutter_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.5"
+    version: "1.0.0"
   cbl_libcblite_api:
     dependency: transitive
     description:
       name: cbl_libcblite_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0-beta.2"
+    version: "3.0.0"
   cbl_libcblitedart_api:
     dependency: transitive
     description:
       name: cbl_libcblitedart_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-beta.6"
+    version: "1.0.0"
   characters:
     dependency: transitive
     description:
