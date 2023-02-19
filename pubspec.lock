@@ -117,18 +117,18 @@ packages:
     dependency: "direct main"
     description:
       name: cbl
-      sha256: "7ac28147b887648f599e3e5f33b9934fccd49de39fa2e288f68b34588b1356d3"
+      sha256: a050486b653e4d220f4a1f9441501d2568d6609f4fdc59b9f86e9810e7b2dad1
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.5"
+    version: "2.1.6"
   cbl_dart:
     dependency: "direct dev"
     description:
       name: cbl_dart
-      sha256: d7a42d7bd9ab56350eec20e06a404886f7c46a3dc5b044f2d6d66a010a69d45d
+      sha256: "17c4a6eab4b7b727d5e5df824fbe5f7fdac540116e1733068db25758ae1cbbfb"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.7"
   cbl_ffi:
     dependency: transitive
     description:
@@ -141,34 +141,34 @@ packages:
     dependency: "direct main"
     description:
       name: cbl_flutter
-      sha256: "4451d44012a3c781dbf004adf9eed62af83ba9a03de698a0acd595c62ff9e742"
+      sha256: "2143bce83763dee630762859937f614cb0345a351feddcb75a39c7e912479061"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   cbl_flutter_ce:
     dependency: "direct main"
     description:
       name: cbl_flutter_ce
-      sha256: f95b134b7579bad3dc0c0b802585115055b7cddd5906f1a950dd6979160321f1
+      sha256: "5d757252a88edf469c001811c7d20e91ffaeecac52db8f5a3591edb96ca9de1b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.3"
+    version: "2.1.4"
   cbl_flutter_platform_interface:
     dependency: transitive
     description:
       name: cbl_flutter_platform_interface
-      sha256: "10a8890222c21c456de40a4bcb0c4c9a25e4e861cf7a22b1f6b66061aafe7b09"
+      sha256: "26936ff4e95361bb65cbcba6855deff09225162784761f92af9a9dffe90fa345"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   cbl_generator:
     dependency: "direct dev"
     description:
       name: cbl_generator
-      sha256: "8cc91892ea7195fc737c07a016d408c8478a0e2a421002d98640945a3b8c2b4c"
+      sha256: "2f4c34c17faa913dfa52e454c46fd4c9d52866e9749c584dba4e0ff5f7d6fc9e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0+3"
+    version: "0.2.0+4"
   cbl_libcblite_api:
     dependency: transitive
     description:
