@@ -6,6 +6,8 @@ import 'package:rxdart/rxdart.dart';
 
 import '../core/environment.dart';
 
+part 'counter_repository.cbl.type.g.dart';
+
 /// Repository to persist counters.
 class CounterRepository {
   CounterRepository({required this.database});
@@ -37,13 +39,14 @@ class CounterRepository {
   ///
   /// The [delta] can be both positive or negative.
   Future<void> updateCounterValue(String id, {required int delta}) async {
-    await database.saveDocument(MutableDocument({
-      'type': 'CounterChange',
-      'counterId': id,
-      'channels': ['counter/$id'],
-      'delta': delta,
-      'time': DateTime.now().toUtc(),
-    }));
+    await database
+        .saveTypedDocument(MutableCounterChange(
+          counterId: id,
+          channels: ['counter/$id'],
+          delta: delta,
+          time: DateTime.now().toUtc(),
+        ))
+        .withConcurrencyControl();
   }
 
   /// Returns a stream, which synchronizes the counter with the given [id] with
@@ -56,7 +59,12 @@ class CounterRepository {
         // Only pull the selected counter.
         channels: ['counter/$id'],
         // Only push the selected counter.
-        pushFilter: (document, flags) => document['counterId'].string == id,
+        typedPushFilter: (document, flags) {
+          if (document is CounterChange) {
+            return document.counterId == id;
+          }
+          return false;
+        },
       )).asStream().asyncExpand((replicator) => Rx.merge([
             // Emit all errors from the replicator into the stream.
             replicator.changes().map((change) {
@@ -90,3 +98,19 @@ class CounterRepository {
     return results.firstOrNull?.integer(0) ?? 0;
   }
 }
+
+@TypedDocument()
+abstract class CounterChange with _$CounterChange {
+  factory CounterChange({
+    required String counterId,
+    required List<String> channels,
+    required int delta,
+    required DateTime time,
+  }) = MutableCounterChange;
+
+  @DocumentId()
+  String get id;
+}
+
+@TypedDatabase(types: {CounterChange})
+abstract class $CounterDatabase {}

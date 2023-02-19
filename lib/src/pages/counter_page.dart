@@ -110,7 +110,7 @@ class _CounterGauge extends StatelessWidget {
         number: bloc.count!,
         style: Theme.of(context)
             .textTheme
-            .headline1!
+            .displayLarge!
             .merge(GoogleFonts.robotoMono(fontWeight: FontWeight.w100)),
       );
     } else {

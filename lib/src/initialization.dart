@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import 'core/environment.dart';
+import 'data/counter_repository.cbl.database.g.dart';
 import 'data/counter_repository.dart';
 
 /// Initializer, which prepares the app for execution.
@@ -83,7 +84,7 @@ class DefaultAppInitializer extends AppInitializer {
   }
 
   Future<void> _openDatabase() async {
-    _database = await Database.openAsync(
+    _database = await CounterDatabase.openAsync(
       // A new database is opened each time the app starts to ensure multiple
       // instances of the app, running in parallel, do not use the same
       // database. This is necessary because two or more replicators accessing
