@@ -12,12 +12,12 @@ part 'counter_repository.cbl.type.g.dart';
 class CounterRepository {
   CounterRepository({required this.database});
 
-  final AsyncDatabase database;
+  final Database database;
 
   /// Returns the current value of the counter with the given [id] from the
   /// database.
   Future<int> counterValue(String id) async {
-    final query = _buildCounterValueQuery();
+    final query = await _buildCounterValueQuery();
     await query.setParameters(Parameters({'COUNTER_ID': id}));
     final resultSet = await query.execute();
     return _countValueQueryResult(resultSet);
@@ -26,7 +26,7 @@ class CounterRepository {
   /// Returns a stream of the value of the counter with the given [id], which
   /// emits a new value when the counter changes.
   Stream<int> watchCounterValue(String id) => Future(() async {
-        final query = _buildCounterValueQuery();
+        final query = await _buildCounterValueQuery();
         await query.setParameters(Parameters({'COUNTER_ID': id}));
         return query;
       })
@@ -51,21 +51,27 @@ class CounterRepository {
 
   /// Returns a stream, which synchronizes the counter with the given [id] with
   /// the Sync Gateway, while it is being listened to.
-  Stream<void> syncCounter(String id) =>
-      Replicator.createAsync(ReplicatorConfiguration(
-        database: database,
-        target: UrlEndpoint(appEnvironment.syncGatewayUrl),
-        continuous: true,
-        // Only pull the selected counter.
-        channels: ['counter/$id'],
-        // Only push the selected counter.
-        typedPushFilter: (document, flags) {
-          if (document is CounterChange) {
-            return document.counterId == id;
-          }
-          return false;
-        },
-      )).asStream().asyncExpand((replicator) => Rx.merge([
+  Stream<void> syncCounter(String id) => Future(() async {
+        final config = ReplicatorConfiguration(
+          target: UrlEndpoint(appEnvironment.syncGatewayUrl),
+          continuous: true,
+          // Only push the selected counter.
+          typedPushFilter: (document, flags) {
+            if (document is CounterChange) {
+              return document.counterId == id;
+            }
+            return false;
+          },
+        )..addCollection(
+            await database.defaultCollection,
+            CollectionConfiguration(
+              // Only pull the selected counter.
+              channels: ['counter/$id'],
+            ),
+          );
+
+        return Replicator.createAsync(config);
+      }).asStream().asyncExpand((replicator) => Rx.merge([
             // Emit all errors from the replicator into the stream.
             replicator.changes().map((change) {
               final error = change.status.error;
@@ -82,13 +88,13 @@ class CounterRepository {
               // canceled.
               .doOnCancel(replicator.close));
 
-  AsyncQuery _buildCounterValueQuery() {
+  Future<AsyncQuery> _buildCounterValueQuery() async {
     final counterId = Expression.property('counterId');
     var deltaSum = Function_.sum(Expression.property('delta'));
 
     return QueryBuilder.createAsync()
         .select(SelectResult.expression(deltaSum))
-        .from(DataSource.database(database))
+        .from(DataSource.collection(await database.defaultCollection))
         .where(counterId.equalTo(Expression.parameter('COUNTER_ID')))
         .groupBy(counterId);
   }

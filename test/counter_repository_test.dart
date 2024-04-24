@@ -15,7 +15,7 @@ void main() {
   });
 
   setUp(() async {
-    await db.deleteAllDocuments();
+    await db.deleteAllDocuments(await db.defaultCollection);
   });
 
   test('counter value for new counter', () async {

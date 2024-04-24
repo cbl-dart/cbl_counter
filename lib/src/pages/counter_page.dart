@@ -85,9 +85,9 @@ class _CounterPageState extends State<CounterPage> {
       ),
       body: const Center(child: RepaintBoundary(child: _CounterGauge())),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
         tooltip: 'Increment',
         onPressed: _invokeAction(bloc.updateStatus, bloc.increment),
+        child: const Icon(Icons.add),
       ),
     );
   }

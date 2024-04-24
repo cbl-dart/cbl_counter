@@ -15,16 +15,20 @@ Future<void> initCouchbaseLiteForTest() async {
 }
 
 extension DatabaseExt on Database {
-  Stream<String> allDocumentIds() =>
-      Future.sync(() => Query.fromN1ql(this, 'SELECT META().id FROM _'))
+  Stream<String> allDocumentIds(Collection collection) =>
+      Future.sync(() => createQuery(
+                'SELECT META().id '
+                'FROM ${collection.scope.name}.${collection.name}',
+              ))
           .asStream()
           .asyncMap((query) => query.execute())
           .asyncExpand((resultSet) => resultSet.asStream())
           .map((result) => result.value(0)!);
 
-  Future<void> deleteAllDocuments() async => inBatch(() async {
-        await for (final id in allDocumentIds()) {
-          await deleteDocument((await document(id))!);
+  Future<void> deleteAllDocuments(Collection collection) async =>
+      inBatch(() async {
+        await for (final id in allDocumentIds(collection)) {
+          await collection.deleteDocument((await collection.document(id))!);
         }
       });
 }
