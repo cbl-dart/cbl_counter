@@ -39,7 +39,8 @@ class CounterRepository {
   ///
   /// The [delta] can be both positive or negative.
   Future<void> updateCounterValue(String id, {required int delta}) async {
-    await database
+    final collection = await database.defaultCollection;
+    await collection
         .saveTypedDocument(MutableCounterChange(
           counterId: id,
           channels: ['counter/$id'],

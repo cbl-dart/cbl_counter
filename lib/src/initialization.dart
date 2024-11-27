@@ -74,9 +74,9 @@ class DefaultAppInitializer extends AppInitializer {
 
   void _setupCouchbaseLogging() {
     Database.log
-      // For Flutter apps `Database.log.custom` is setup with a logger, which
-      // logs to `print`, but only at log level `warning`.
-      ..custom!.level = kReleaseMode ? LogLevel.none : LogLevel.info
+      // Per default, the log level is set to [LogLevel.warning]. In debug mode
+      // we want to see all logs, in release mode we want to see no logs.
+      ..console.level = kReleaseMode ? LogLevel.none : LogLevel.info
       ..file.config = LogFileConfiguration(
         directory: appEnvironment.cblLogsDirectory,
         usePlainText: !kReleaseMode,
