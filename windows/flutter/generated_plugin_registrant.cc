@@ -6,9 +6,9 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <cbl_flutter_ce/cbl_flutter_ce.h>
+#include <cbl_flutter_ee/cbl_flutter_ee.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  CblFlutterCeRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("CblFlutterCe"));
+  CblFlutterEeRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("CblFlutterEe"));
 }

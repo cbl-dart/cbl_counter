@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  cbl_flutter_ce
+  cbl_flutter_ee
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
