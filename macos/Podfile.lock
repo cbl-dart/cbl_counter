@@ -1,5 +1,5 @@
 PODS:
-  - cbl_flutter_ce (0.0.1):
+  - cbl_flutter_ee (0.0.1):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - path_provider_foundation (0.0.1):
@@ -7,23 +7,23 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - cbl_flutter_ce (from `Flutter/ephemeral/.symlinks/plugins/cbl_flutter_ce/macos`)
+  - cbl_flutter_ee (from `Flutter/ephemeral/.symlinks/plugins/cbl_flutter_ee/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
-  - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/macos`)
+  - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
 
 EXTERNAL SOURCES:
-  cbl_flutter_ce:
-    :path: Flutter/ephemeral/.symlinks/plugins/cbl_flutter_ce/macos
+  cbl_flutter_ee:
+    :path: Flutter/ephemeral/.symlinks/plugins/cbl_flutter_ee/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   path_provider_foundation:
-    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/macos
+    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin
 
 SPEC CHECKSUMS:
-  cbl_flutter_ce: 39d702a754b2dd00d42418106a56c1fab9a23f32
+  cbl_flutter_ee: 6907e68a3d951602a7cffff7ad2b9004aa8d71ef
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
 
 PODFILE CHECKSUM: 0d3963a09fc94f580682bd88480486da345dc3f0
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2

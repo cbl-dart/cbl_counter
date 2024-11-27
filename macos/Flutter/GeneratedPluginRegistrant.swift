@@ -5,10 +5,10 @@
 import FlutterMacOS
 import Foundation
 
-import cbl_flutter_ce
+import cbl_flutter_ee
 import path_provider_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  CblFlutterCe.register(with: registry.registrar(forPlugin: "CblFlutterCe"))
+  CblFlutterEe.register(with: registry.registrar(forPlugin: "CblFlutterEe"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
 }
